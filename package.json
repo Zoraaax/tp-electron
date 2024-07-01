@@ -8,11 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Valentin THIBAULT",
+  "type": "commonjs",
   "license": "ISC",
   "devDependencies": {
     "electron": "^31.1.0"
-  },
-  "dependencies": {
-    "@everapi/currencyapi-js": "^1.0.6"
   }
 }
