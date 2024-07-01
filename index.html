@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./index.css" rel="stylesheet">
+    <title>Application de notes/méteo/devises</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar__list">
+            <li><a class="navbar__item" href="#notes">Notes</a></li>
+            <li><a class="navbar__item" href="#weather">Météo</a></li>
+            <li><a class="navbar__item" href="#devises">Devises</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="notes">
+            <input type="text" id="note" placeholder="Ajouter une note">
+            <button id="add-note">Ajouter</button>
+            <ul id="notes-list"></ul>
+        </section>
+        <section id="weather">
+            <input type="text" id="search" placeholder="Entrez le nom de la ville ou du pays">
+            <button id="get-weather">Obtenir la météo</button>
+            <div id="weather-info"></div>
+        </section>
+    </main>
+    <script src="./renderer.js"></script>
+</body>
+</html>
