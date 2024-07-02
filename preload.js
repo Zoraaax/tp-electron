@@ -1,18 +1,22 @@
-window.addEventListener('DOMContentLoaded', () => {
-    const addNoteButton = document.getElementById('add-note');
-    if (addNoteButton) {
-        addNoteButton.addEventListener('click', () => {
-            const note = document.getElementById('note').value;
-            window.electronAPI.saveNotes(note);
-        });
-    }
+const { contextBridge, ipcRenderer } = require('electron');
 
-    window.electronAPI.readNotes();
-
-    const searchButton = document.getElementById('get-weather');
-    if (searchButton) {
-        searchButton.addEventListener('click', () => {
-            window.electronAPI.getWeatherInfo();
-        });
-    }
+contextBridge.exposeInMainWorld('electronAPI', {
+    saveNotes: (note) => {
+        ipcRenderer.send('add-notes', note);
+    },
+    readNotes: () => {
+        ipcRenderer.send('read-notes');
+    },
+    getWeatherInfo: (location) => {
+        ipcRenderer.send('get-weather-info', location);
+    },
+    onNotesRead: (callback) => {
+        ipcRenderer.on('notes-read', (event, notes) => callback(notes));
+    },
+    onWeatherInfoReceived: (callback) => {
+        ipcRenderer.on('weather-info-received', (event, weatherInfo) => callback(weatherInfo));
+    },
+    deleteNote: (note) => {
+        ipcRenderer.send('delete-note', note);
+    },
 });
